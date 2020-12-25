@@ -1,6 +1,6 @@
 ﻿namespace SwiftCSharp.PPSP.Protocol
 {
-    public enum ProtocolType
+    public enum ProtocolType : byte
     {
         Version,
         MinimumVersion,

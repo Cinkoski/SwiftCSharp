@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SwiftCSharp.PPSP.Protocol
+﻿namespace SwiftCSharp.PPSP.Protocol
 {
-    class ChunkAdressingMethod
+    public class ChunkAdressingMethod : IProtocolOption
     {
+        public byte[] ToByteArray()
+        {
+            return new byte[] { (byte)ProtocolType.ChunkAdressingMethod, 0 }; // default: 32-bit bins
+        }
     }
 }

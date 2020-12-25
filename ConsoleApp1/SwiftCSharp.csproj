@@ -74,6 +74,24 @@
   <ItemGroup>
     <Compile Include="Helper.cs" />
     <Compile Include="Models\PlaylistModel.cs" />
+    <Compile Include="PPSP\Message\MessageType.cs" />
+    <Compile Include="PPSP\Message\Ack.cs" />
+    <Compile Include="PPSP\Message\Handshake.cs" />
+    <Compile Include="PPSP\Message\Have.cs" />
+    <Compile Include="PPSP\PpspClient.cs" />
+    <Compile Include="PPSP\Protocol\ChunkAdressingMethod.cs" />
+    <Compile Include="PPSP\Protocol\ChunkSize.cs" />
+    <Compile Include="PPSP\Protocol\CipMethod.cs" />
+    <Compile Include="PPSP\Protocol\EndOption.cs" />
+    <Compile Include="PPSP\Protocol\IProtocolOption.cs" />
+    <Compile Include="PPSP\Protocol\LiveDiscardWindow.cs" />
+    <Compile Include="PPSP\Protocol\LiveSignatureAlgorithm.cs" />
+    <Compile Include="PPSP\Protocol\MhtFunction.cs" />
+    <Compile Include="PPSP\Protocol\MinimumVersion.cs" />
+    <Compile Include="PPSP\Protocol\ProtocolType.cs" />
+    <Compile Include="PPSP\Protocol\SupportedMessages.cs" />
+    <Compile Include="PPSP\Protocol\SwarmIdentifier.cs" />
+    <Compile Include="PPSP\Protocol\Version.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProgramGuide.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -92,5 +110,6 @@
       <Name>STUN</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

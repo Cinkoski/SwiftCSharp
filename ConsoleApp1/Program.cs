@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SwiftCSharp.PPSP;
+using System;
 using System.Linq;
 
 namespace ConsoleApp1
@@ -11,8 +12,9 @@ namespace ConsoleApp1
             swiftClient.Init();
 
             var swarmId = new ProgramGuide().GetAllChannels().List.First().ChannelList.First().SwarmId; // first category -> first channel; for testing only
-            swiftClient.Connect(swarmId);
-            swiftClient.Disconnect();
+            new PpspClient(swarmId).SendHandshake();
+            //swiftClient.Connect(swarmId);
+            //swiftClient.Disconnect();
 
             Console.ReadLine();
         }

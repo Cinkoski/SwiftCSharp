@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SwiftCSharp.PPSP.Protocol
+﻿namespace SwiftCSharp.PPSP.Protocol
 {
-    class LiveDiscardWindow
+    public class LiveDiscardWindow : IProtocolOption
     {
+        public byte[] ToByteArray()
+        {
+            return new byte[] { (byte)ProtocolType.LiveDiscardWindow, 0, 0, 64, 0 }; // TBD
+        }
     }
 }
