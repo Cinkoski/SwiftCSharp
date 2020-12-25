@@ -23,16 +23,15 @@ namespace ConsoleApp1
             _remoteAddress = remoteAddres;
             _localAddress = localAddress;
             _peerId = generatePeerId();
-            JsonSerializer.SetDefaultResolver(StandardResolver.ExcludeNullSnakeCase);
         }
 
         public void Join(string swarmHash)
         {
             var protocolModel = buildBaseObject(swarmHash, SwarmAction.JOIN);
-            var json = JsonSerializer.ToJsonString(protocolModel);
+            var json = JsonSerializer.ToJsonString(protocolModel, StandardResolver.ExcludeNullSnakeCase);
 
             var resultJson = sendPostRequest(json);
-            var resultObject = JsonSerializer.Deserialize<SwiftProtocol>(resultJson);
+            var resultObject = JsonSerializer.Deserialize<SwiftProtocol>(resultJson, StandardResolver.ExcludeNullSnakeCase);
         }
 
         public void Find(string swarmHash)
@@ -43,10 +42,10 @@ namespace ConsoleApp1
         public void Leave(string swarmHash)
         {
             var protocolModel = buildBaseObject(swarmHash, SwarmAction.LEAVE);
-            var json = JsonSerializer.ToJsonString(protocolModel);
+            var json = JsonSerializer.ToJsonString(protocolModel, StandardResolver.ExcludeNullSnakeCase);
 
             var resultJson = sendPostRequest(json);
-            var resultObject = JsonSerializer.Deserialize<SwiftProtocol>(resultJson);
+            var resultObject = JsonSerializer.Deserialize<SwiftProtocol>(resultJson, StandardResolver.ExcludeNullSnakeCase);
         }
 
         private string sendPostRequest(string jsonData)

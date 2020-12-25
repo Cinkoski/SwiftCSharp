@@ -1,4 +1,6 @@
-﻿namespace ConsoleApp1
+﻿using System;
+
+namespace ConsoleApp1
 {
     public class Swift
     {
@@ -14,6 +16,9 @@
 
         public void Connect(string swarmId)
         {
+            if (_swarmId != null && _swarmId != "")
+                throw new Exception("Client is already connected!");
+
             _swarmId = swarmId;
             _swarmHash = Helper.SwarmToHash(swarmId);
 
