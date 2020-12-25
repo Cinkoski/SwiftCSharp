@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net472</TargetFrameworks>
+    <Version>0.5.0</Version>
+    <Authors>Moien007</Authors>
+    <Product />
+    <Company />
+    <PackageProjectUrl>https://github.com/moien007/stun</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/moien007/stun</RepositoryUrl>
+    <PackageReleaseNotes>- .NET Standard Support</PackageReleaseNotes>
+    <Description>A tiny Session Traversal Utilities for NAT (STUN) client library based on deprecated RFC3489.
+
+</Description>
+  </PropertyGroup>
+
+</Project>
