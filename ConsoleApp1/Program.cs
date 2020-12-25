@@ -10,7 +10,7 @@ namespace ConsoleApp1
             var swiftClient = new Swift();
             swiftClient.Init();
 
-            var swarmId = new ProgramGuide().GetAllChannels().List.First().ChannelList.First().SwarmId; // first category -> first channel
+            var swarmId = new ProgramGuide().GetAllChannels().List.First().ChannelList.First().SwarmId; // first category -> first channel; for testing only
             swiftClient.Connect(swarmId);
             swiftClient.Disconnect();
 
