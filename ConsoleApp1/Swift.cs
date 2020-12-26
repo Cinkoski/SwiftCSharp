@@ -14,7 +14,7 @@ namespace ConsoleApp1
             _tracker = new Tracker(stunAddresses.PublicEndPoint, stunAddresses.LocalEndPoint);
         }
 
-        public void Connect(string swarmId)
+        public SwiftProtocol Connect(string swarmId)
         {
             if (_swarmId != null && _swarmId != "")
                 throw new Exception("Client is already connected!");
@@ -22,7 +22,7 @@ namespace ConsoleApp1
             _swarmId = swarmId;
             _swarmHash = Helper.SwarmToHash(swarmId);
 
-            _tracker.Join(_swarmHash);
+            return _tracker.Join(_swarmHash);
         }
 
         public void Disconnect()

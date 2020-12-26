@@ -74,11 +74,14 @@
   <ItemGroup>
     <Compile Include="Helper.cs" />
     <Compile Include="Models\PlaylistModel.cs" />
+    <Compile Include="PPSP\MessageResolver.cs" />
+    <Compile Include="PPSP\Message\AbstractMessage.cs" />
     <Compile Include="PPSP\Message\MessageType.cs" />
     <Compile Include="PPSP\Message\Ack.cs" />
     <Compile Include="PPSP\Message\Handshake.cs" />
     <Compile Include="PPSP\Message\Have.cs" />
     <Compile Include="PPSP\PpspClient.cs" />
+    <Compile Include="PPSP\Protocol\Address.cs" />
     <Compile Include="PPSP\Protocol\ChunkAdressingMethod.cs" />
     <Compile Include="PPSP\Protocol\ChunkSize.cs" />
     <Compile Include="PPSP\Protocol\CipMethod.cs" />

@@ -1,6 +1,6 @@
-﻿using SwiftCSharp.PPSP.Protocol;
-using System;
-using System.Collections.Generic;
+﻿using SwiftCSharp.PPSP.Message;
+using System.Net;
+using System.Net.Sockets;
 
 namespace SwiftCSharp.PPSP
 {
@@ -15,26 +15,14 @@ namespace SwiftCSharp.PPSP
             _swarmId = swarmId;
         }
 
-        public void SendHandshake()
+        public byte[] SendHandshake(IPEndPoint endpoint, int localPort)
         {
-            List<byte> outputBuffer = new List<byte>();
-            outputBuffer.Add((byte)MessageType.HANDSHAKE);
-            outputBuffer.AddRange(new byte[] { 0, 0, 0, 0 }); // add dst 0 address
-            outputBuffer.AddRange(getRandomBytes(4)); // add src random address ??
-            outputBuffer.AddRange(new SwarmIdentifier(_swarmId).ToByteArray());
-            outputBuffer.AddRange(new CipMethod().ToByteArray());
-            outputBuffer.AddRange(new LiveSignatureAlgorithm().ToByteArray());
-            outputBuffer.AddRange(new ChunkAdressingMethod().ToByteArray());
-            outputBuffer.AddRange(new LiveDiscardWindow().ToByteArray());
+            var outputArray = new Handshake(_swarmId).ToByteArray();
 
-            var outputArray = outputBuffer.ToArray();
-        }
-
-        public byte[] getRandomBytes(int size)
-        {
-            var randomBytes = new byte[size];
-            new Random().NextBytes(randomBytes);
-            return randomBytes;
+            var udpClient = new UdpClient(localPort);
+            udpClient.Connect(endpoint);
+            udpClient.Send(outputArray, outputArray.Length);
+            return udpClient.Receive(ref endpoint);
         }
     }
 }

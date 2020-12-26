@@ -25,27 +25,28 @@ namespace ConsoleApp1
             _peerId = generatePeerId();
         }
 
-        public void Join(string swarmHash)
+        public SwiftProtocol Join(string swarmHash)
         {
-            var protocolModel = buildBaseObject(swarmHash, SwarmAction.JOIN);
-            var json = JsonSerializer.ToJsonString(protocolModel, StandardResolver.ExcludeNullSnakeCase);
-
-            var resultJson = sendPostRequest(json);
-            var resultObject = JsonSerializer.Deserialize<SwiftProtocol>(resultJson, StandardResolver.ExcludeNullSnakeCase);
+            return sendSwarmAction(swarmHash, SwarmAction.JOIN);
         }
 
         public void Find(string swarmHash)
         {
-            // why would i need it?
+            // sometimes used, why would i need it?
         }
 
-        public void Leave(string swarmHash)
+        public SwiftProtocol Leave(string swarmHash)
         {
-            var protocolModel = buildBaseObject(swarmHash, SwarmAction.LEAVE);
+            return sendSwarmAction(swarmHash, SwarmAction.LEAVE);
+        }
+
+        private SwiftProtocol sendSwarmAction(string swarmHash, SwarmAction action)
+        {
+            var protocolModel = buildBaseObject(swarmHash, action);
             var json = JsonSerializer.ToJsonString(protocolModel, StandardResolver.ExcludeNullSnakeCase);
 
             var resultJson = sendPostRequest(json);
-            var resultObject = JsonSerializer.Deserialize<SwiftProtocol>(resultJson, StandardResolver.ExcludeNullSnakeCase);
+            return JsonSerializer.Deserialize<SwiftProtocol>(resultJson, StandardResolver.ExcludeNullSnakeCase);
         }
 
         private string sendPostRequest(string jsonData)
