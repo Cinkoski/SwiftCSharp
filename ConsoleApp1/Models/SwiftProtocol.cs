@@ -38,7 +38,7 @@ namespace ConsoleApp1
 
     public class PeerGroupModel
     {
-        public List<PeerAddrModel> PeerInfo;
+        public List<PeerInfoModel> PeerInfo;
     }
 
     public class PeerNumModel
@@ -47,6 +47,12 @@ namespace ConsoleApp1
         public ConcurrentLinksEnum ConcurrentLinks;
         public OnlineTimeEnum OnlineTime;
         public UploadBandwidthLevelEnum UploadBandwidthLevel;
+    }
+
+    public class PeerInfoModel
+    {
+        public string PeerId;
+        public PeerAddrModel PeerAddr;
     }
 
     public class PeerAddrModel
@@ -95,7 +101,9 @@ namespace ConsoleApp1
 
     public enum AddressTypeEnum
     {
-        Ipv4,
+        ipv4, // small case when receiving
+        Ipv4, // big case when sending
+        ipv6,
         Ipv6
     }
 
@@ -108,6 +116,7 @@ namespace ConsoleApp1
     public enum SwarmAction
     {
         JOIN,
+        FIND,
         LEAVE
     }
 
