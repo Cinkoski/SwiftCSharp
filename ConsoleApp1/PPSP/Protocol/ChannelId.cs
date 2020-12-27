@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleApp1;
+using System;
 
 namespace SwiftCSharp.PPSP.Protocol
 {
@@ -11,7 +12,7 @@ namespace SwiftCSharp.PPSP.Protocol
         public ChannelId(bool random = false)
         {
             if (random)
-                _channelBytes = getRandomBytes(4);
+                _channelBytes = Helper.GetRandomBytes(4);
             else
                 _channelBytes = new byte[] { 0, 0, 0, 0 };
         }
@@ -26,11 +27,9 @@ namespace SwiftCSharp.PPSP.Protocol
             return _channelBytes;
         }
 
-        private byte[] getRandomBytes(int size)
+        public int ToInt()
         {
-            var randomBytes = new byte[size];
-            new Random().NextBytes(randomBytes);
-            return randomBytes;
+            return BitConverter.ToInt32(_channelBytes, 0);
         }
     }
 }

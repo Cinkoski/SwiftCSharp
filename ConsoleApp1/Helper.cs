@@ -8,6 +8,7 @@ namespace ConsoleApp1
     public class Helper
     {
         public static HttpClient WebClient = new HttpClient();
+        private static Random _random = new Random();
 
         public static string SwarmToHash(string swarmId)
         {
@@ -47,7 +48,7 @@ namespace ConsoleApp1
         public static long RandomLong(long min, long max)
         {
             byte[] buf = new byte[8];
-            new Random().NextBytes(buf);
+            _random.NextBytes(buf);
             long longRand = BitConverter.ToInt64(buf, 0);
 
             return (Math.Abs(longRand % (max - min)) + min);
@@ -62,6 +63,13 @@ namespace ConsoleApp1
             }
             sb.Append("}");
             return sb.ToString();
+        }
+
+        public static byte[] GetRandomBytes(int size)
+        {
+            var randomBytes = new byte[size];
+            _random.NextBytes(randomBytes);
+            return randomBytes;
         }
     }
 }
