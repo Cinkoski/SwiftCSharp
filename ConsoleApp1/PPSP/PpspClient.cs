@@ -1,5 +1,4 @@
-﻿using ConsoleApp1;
-using SwiftCSharp.PPSP.Message;
+﻿using SwiftCSharp.PPSP.Message;
 using System;
 using System.Net;
 using System.Net.Sockets;
@@ -18,14 +17,23 @@ namespace SwiftCSharp.PPSP
             _swarmId = swarmId;
         }
 
-        public byte[] SendHandshake(IPEndPoint endpoint, int localPort)
+        public byte[] SendHandshake(IPEndPoint peerAddress, int localPort)
         {
             byte[] outputArray = new Handshake(_swarmId).ToByteArray();
 
             var udpClient = new UdpClient(localPort);
-            udpClient.Connect(endpoint);
+            udpClient.Connect(peerAddress);
             udpClient.Send(outputArray, outputArray.Length);
-            return udpClient.Receive(ref endpoint);
+
+            try
+            {
+                return udpClient.Receive(ref peerAddress);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Couldn't connect to peer: {peerAddress}");
+                return null;
+            }
         }
     }
 }
