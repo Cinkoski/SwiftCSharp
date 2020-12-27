@@ -18,7 +18,14 @@ namespace STUN.Attributes
             byte[] buffer = new byte[1024 * 2];
             int bytesRead = 0;
 
-            bytesRead = socket.ReceiveFrom(buffer, ref endPoint);
+            try
+            {
+                bytesRead = socket.ReceiveFrom(buffer, ref endPoint);
+            }
+            catch
+            {
+                return null;
+            }
 
             return buffer.Take(bytesRead).ToArray();
         }
