@@ -1,4 +1,6 @@
-﻿using SwiftCSharp.PPSP.Message;
+﻿using ConsoleApp1;
+using SwiftCSharp.PPSP.Message;
+using System;
 using System.Net;
 using System.Net.Sockets;
 
@@ -7,6 +9,7 @@ namespace SwiftCSharp.PPSP
     class PpspClient
     {
         // 1. HANDSHAKE to all clients from tracker
+        // 2. Receive HANDSHAKE
 
         private readonly string _swarmId;
 
@@ -17,7 +20,7 @@ namespace SwiftCSharp.PPSP
 
         public byte[] SendHandshake(IPEndPoint endpoint, int localPort)
         {
-            var outputArray = new Handshake(_swarmId).ToByteArray();
+            byte[] outputArray = new Handshake(_swarmId).ToByteArray();
 
             var udpClient = new UdpClient(localPort);
             udpClient.Connect(endpoint);

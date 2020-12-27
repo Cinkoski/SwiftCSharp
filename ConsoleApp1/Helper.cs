@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 
 namespace ConsoleApp1
 {
@@ -50,6 +51,17 @@ namespace ConsoleApp1
             long longRand = BitConverter.ToInt64(buf, 0);
 
             return (Math.Abs(longRand % (max - min)) + min);
+        }
+
+        public static string ByteArrayToString(byte[] input, bool hexValues = true)
+        {
+            var sb = new StringBuilder("{ ");
+            foreach (var b in input)
+            {
+                sb.Append(b.ToString("x2") + ", ");
+            }
+            sb.Append("}");
+            return sb.ToString();
         }
     }
 }

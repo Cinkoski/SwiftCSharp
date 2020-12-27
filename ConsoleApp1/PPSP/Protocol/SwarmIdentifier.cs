@@ -17,7 +17,7 @@ namespace SwiftCSharp.PPSP.Protocol
             byte[] output = new byte[69];
             var swarmBytes = Helper.StringToByteArray(_swarmId);
             Buffer.BlockCopy(initBytes, 0, output, 0, initBytes.Length);
-            Buffer.BlockCopy(swarmBytes, 0, output, 4, swarmBytes.Length);
+            Buffer.BlockCopy(swarmBytes, 0, output, 3, swarmBytes.Length);
             return output;
         }
     }

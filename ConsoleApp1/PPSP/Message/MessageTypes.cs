@@ -1,6 +1,6 @@
-﻿namespace SwiftCSharp.PPSP
+﻿namespace SwiftCSharp.PPSP.Message
 {
-    public enum MessageType
+    public enum MessageTypes
     {
         HANDSHAKE,
         DATA,

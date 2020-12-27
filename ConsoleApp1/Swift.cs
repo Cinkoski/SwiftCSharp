@@ -6,12 +6,12 @@ namespace ConsoleApp1
     {
         private string _swarmId;
         private string _swarmHash;
-        private Tracker _tracker;
+        public Tracker SwiftTracker;
 
         public void Init()
         {
             var stunAddresses = new StunClient().GetAddress();
-            _tracker = new Tracker(stunAddresses.PublicEndPoint, stunAddresses.LocalEndPoint);
+            SwiftTracker = new Tracker(stunAddresses.PublicEndPoint, stunAddresses.LocalEndPoint);
         }
 
         public SwiftProtocol Connect(string swarmId)
@@ -22,12 +22,12 @@ namespace ConsoleApp1
             _swarmId = swarmId;
             _swarmHash = Helper.SwarmToHash(swarmId);
 
-            return _tracker.Join(_swarmHash);
+            return SwiftTracker.Join(_swarmHash);
         }
 
         public void Disconnect()
         {
-            _tracker.Leave(_swarmHash);
+            SwiftTracker.Leave(_swarmHash);
             _swarmId = "";
             _swarmHash = "";
         }

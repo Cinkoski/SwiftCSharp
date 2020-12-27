@@ -14,14 +14,14 @@ namespace ConsoleApp1
         private const string _getSessionUrl = "http://80.211.35.134/playercode/p2pengine/v2/getsession.php";
         private const int _defaultPeerCount = 30;
 
-        private readonly IPEndPoint _remoteAddress;
-        private readonly IPEndPoint _localAddress;
+        public readonly IPEndPoint RemoteAddress;
+        public readonly IPEndPoint LocalAddress;
         private string _peerId;
 
         public Tracker(IPEndPoint remoteAddres, IPEndPoint localAddress)
         {
-            _remoteAddress = remoteAddres;
-            _localAddress = localAddress;
+            RemoteAddress = remoteAddres;
+            LocalAddress = localAddress;
             _peerId = generatePeerId();
         }
 
@@ -89,7 +89,7 @@ namespace ConsoleApp1
                             OnlineTime = OnlineTimeEnum.NORMAL,
                             UploadBandwidthLevel = UploadBandwidthLevelEnum.NORMAL
                         },
-                        PeerAddr = getPeeerAddrModel(_remoteAddress, _localAddress),
+                        PeerAddr = getPeeerAddrModel(RemoteAddress, LocalAddress),
                         SwarmAction = new List<SwarmActionModel>()
                         {
                             new SwarmActionModel()
