@@ -2,38 +2,41 @@
 using System;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading.Tasks;
 
 namespace SwiftCSharp.PPSP
 {
-    class PpspClient
+    public class PpspClient
     {
-        // 1. HANDSHAKE to all clients from tracker
-        // 2. Receive HANDSHAKE
+        private UdpClient _client;
 
-        private readonly string _swarmId;
-
-        public PpspClient(string swarmId)
+        public void Initialize(string swarmId, int localPort)
         {
-            _swarmId = swarmId;
+            _client = new UdpClient(localPort);
         }
 
-        public byte[] SendHandshake(IPEndPoint peerAddress, int localPort)
+        public async Task<byte[]> SendHandshake(Handshake handshake, IPEndPoint peerAddress)
         {
-            byte[] outputArray = new Handshake(_swarmId).ToByteArray();
+            byte[] outputArray = handshake.ToByteArray();
 
-            var udpClient = new UdpClient(localPort);
-            udpClient.Connect(peerAddress);
-            udpClient.Send(outputArray, outputArray.Length);
+            await _client.SendAsync(outputArray, outputArray.Length, peerAddress);
 
             try
             {
-                return udpClient.Receive(ref peerAddress);
+                UdpReceiveResult result = await _client.ReceiveAsync();
+
+                if (result.RemoteEndPoint.Address.ToString() != "179.43.163.154") // Ignore stun.deltamediaplayer.com sending packets. TODO: What are those packets? How to filter them?
+                {
+                    Console.WriteLine($"Received {result.Buffer.Length} bytes from: {result.RemoteEndPoint}");
+                    return result.Buffer;
+                }
             }
-            catch (Exception e)
+            catch
             {
-                Console.WriteLine($"Couldn't connect to peer: {peerAddress}");
-                return null;
+                Console.WriteLine($"Couldn't receive from {peerAddress}");
             }
+
+            return null;
         }
     }
 }
