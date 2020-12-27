@@ -1,17 +1,30 @@
-﻿using SwiftCSharp.PPSP.Message;
+﻿using System;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace SwiftCSharp.PPSP
 {
     public class MessageResolver
     {
-        public AbstractMessage FromByteArray(byte[] input)
+        public static void Resolve(Task<byte[]> input, byte[] channelId)
         {
-            // first 4 bytes = address
-            // 5 byte = message type
-            // next 4 bytes = address
-            // rest = message contents
+            byte[] resultBytes = input.Result;
+            if (resultBytes == null)
+                return;
 
-            return null;
+            using (Stream ms = new MemoryStream(resultBytes))
+            using (BinaryReader br = new BinaryReader(ms))
+            {
+                //var msgChannelId = br.ReadInt32();
+
+                /*if (msgChannelId != channelId)
+                {
+                    Console.WriteLine("Channel Ids are not equal");
+                    return;
+                }*/
+
+                //var msgType = br.ReadByte();
+            }
         }
     }
 }
