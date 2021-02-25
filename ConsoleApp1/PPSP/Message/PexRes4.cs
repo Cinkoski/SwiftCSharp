@@ -1,13 +1,13 @@
-﻿
-using System.IO;
+﻿using System.IO;
 
 namespace SwiftCSharp.PPSP.Message
 {
-    public class Have : AbstractMessage
+    public class PexRes4 : AbstractMessage
     {
-        public override MessageTypes Type => MessageTypes.HAVE;
+        public override MessageTypes Type => MessageTypes.PEX_RES4;
 
-        public uint BinValue;
+        public uint Address;
+        public ushort Port;
 
         public override byte[] ToByteArray()
         {
@@ -17,7 +17,8 @@ namespace SwiftCSharp.PPSP.Message
 
         public override void Decode(BinaryReader br)
         {
-            BinValue = br.ReadUInt32BE();
+            Address = br.ReadUInt32BE();
+            Port = br.ReadUInt16BE();
         }
     }
 }

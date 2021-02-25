@@ -1,8 +1,8 @@
-﻿using ConsoleApp1.Models;
+﻿using SwiftCSharp.Models;
 using Utf8Json;
 using Utf8Json.Resolvers;
 
-namespace ConsoleApp1
+namespace SwiftCSharp
 {
     public class ProgramGuide
     {

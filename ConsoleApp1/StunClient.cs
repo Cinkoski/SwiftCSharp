@@ -3,7 +3,7 @@ using STUN.Attributes;
 using System;
 using System.Net;
 
-namespace ConsoleApp1
+namespace SwiftCSharp
 {
     public class StunClient
     {

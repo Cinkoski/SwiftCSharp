@@ -6,7 +6,7 @@ using System.Text;
 using Utf8Json;
 using Utf8Json.Resolvers;
 
-namespace ConsoleApp1
+namespace SwiftCSharp
 {
     public class Tracker
     {

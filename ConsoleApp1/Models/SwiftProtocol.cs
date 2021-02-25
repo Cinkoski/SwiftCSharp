@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace ConsoleApp1
+namespace SwiftCSharp
 {
     public class SwiftProtocol
     {

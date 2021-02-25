@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ConsoleApp1.Models
+namespace SwiftCSharp.Models
 {
     public class PlaylistModel
     {

@@ -1,12 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace SwiftCSharp.PPSP.Message
 {
-    class Ack
+    public class Ack : AbstractMessage
     {
+        public override MessageTypes Type => MessageTypes.ACK;
+
+        public uint BinValue;
+        public ulong OneWayDelay;
+
+        public override byte[] ToByteArray()
+        {
+            var bytes = ToByteList();
+            bytes.AddRange(BitConverter.GetBytes(BinValue));
+            bytes.AddRange(BitConverter.GetBytes(OneWayDelay));
+            return bytes.ToArray();
+        }
+
+        public override void Decode(BinaryReader br)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

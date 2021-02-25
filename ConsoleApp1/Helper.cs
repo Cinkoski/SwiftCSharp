@@ -3,7 +3,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 
-namespace ConsoleApp1
+namespace SwiftCSharp
 {
     public class Helper
     {

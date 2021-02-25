@@ -1,13 +1,13 @@
-﻿
-using System.IO;
+﻿using System.IO;
 
 namespace SwiftCSharp.PPSP.Message
 {
-    public class Have : AbstractMessage
+    public class Integrity : AbstractMessage
     {
-        public override MessageTypes Type => MessageTypes.HAVE;
+        public override MessageTypes Type => MessageTypes.INTEGRITY;
 
         public uint BinValue;
+        public byte[] Hash;
 
         public override byte[] ToByteArray()
         {
@@ -18,6 +18,7 @@ namespace SwiftCSharp.PPSP.Message
         public override void Decode(BinaryReader br)
         {
             BinValue = br.ReadUInt32BE();
+            Hash = br.ReadBytes(20);
         }
     }
 }

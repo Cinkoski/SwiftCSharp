@@ -3,11 +3,13 @@ using System.IO;
 
 namespace SwiftCSharp.PPSP.Message
 {
-    public class Have : AbstractMessage
+    public class Data : AbstractMessage
     {
-        public override MessageTypes Type => MessageTypes.HAVE;
+        public override MessageTypes Type => MessageTypes.DATA;
 
         public uint BinValue;
+        public ulong Timestamp;
+        public byte[] DataBytes;
 
         public override byte[] ToByteArray()
         {
@@ -18,6 +20,8 @@ namespace SwiftCSharp.PPSP.Message
         public override void Decode(BinaryReader br)
         {
             BinValue = br.ReadUInt32BE();
+            Timestamp = br.ReadUInt64BE();
+            DataBytes = br.ReadBytes((int)(br.BaseStream.Length - br.BaseStream.Position));
         }
     }
 }

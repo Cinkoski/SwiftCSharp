@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Net;
 
-namespace ConsoleApp1
+namespace SwiftCSharp
 {
     public class Swift
     {
@@ -10,8 +11,9 @@ namespace ConsoleApp1
 
         public void Init()
         {
-            var stunAddresses = new StunClient().GetAddress();
-            SwiftTracker = new Tracker(stunAddresses.PublicEndPoint, stunAddresses.LocalEndPoint);
+            var stunResult = new StunClient().GetAddress();
+            //SwiftTracker = new Tracker(stunResult.PublicEndPoint, stunResult.LocalEndPoint);
+            SwiftTracker = new Tracker(new IPEndPoint(IPAddress.Parse("46.151.136.158"), 55658), new IPEndPoint(IPAddress.Parse("192.168.1.123"), 55658));
         }
 
         public SwiftProtocol Connect(string swarmId)
